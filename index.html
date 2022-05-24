@@ -4044,16 +4044,18 @@
   return S.noConflict = function (e) {
     return C.$ === S && (C.$ = Gt), e && C.jQuery === S && (C.jQuery = Vt), S;
   }, "undefined" == typeof e && (C.jQuery = C.$ = S), S;
-});</script><style>h1 {
+});</script><style>
+
+h1 {
     text-align: center;
     font-family: 'Lobster Two', cursive;
     font-size: 65px;
 }
 
-h2{
-      font-family: 'Lobster Two', cursive;
+h2 {
+    font-family: 'Lobster Two', cursive;
 }
-  
+
 
 .posts {
 
@@ -4086,23 +4088,29 @@ input {
 }
 
 
-.likes{
-     border: 5px black solid;
+.likes {
+    border: 5px black solid;
     border-radius: 15px;
-    padding:5px;
-     position:absolute;
+    padding: 5px;
+    position: absolute;
 }
 
-.liked-photo{
-    position:relative;
+.liked-photo {
+    position: relative;
+}
+
+.message3 {
+    display: none;
 }</style></head>
     <body>
         <div class="notifications-bar">
-            <h2>Notifications:<span class="message"></span></h2>
+            <h2 class="message">Notifications:</h2>
+            <h2 class="message2"></h2>
+            <h2 spanclass="message3"> </h2>
         </div>
         <h1>PhotoGram</h1>
         <div class="posts">
-        <!-- The posts container. Each picture the user adds will show up here -->
+            <!-- The posts container. Each picture the user adds will show up here -->
             <img src="https://static01.nyt.com/images/2021/05/17/dining/kc-korean-bulgogi-burger/kc-korean-bulgogi-burger-mobileMasterAt3x.jpg">
             <img src="https://media.npr.org/assets/img/2021/08/11/gettyimages-1279899488_wide-f3860ceb0ef19643c335cb34df3fa1de166e2761-s1100-c50.jpg">
             <img src="https://img.traveltriangle.com/blog/wp-content/uploads/2018/10/beaches-near-nyc-cover.jpg">
@@ -4111,8 +4119,8 @@ input {
         <br>
         <br>
         <div class="input">
-             <!-- The user can add the link to  new photo here -->
-            
+            <!-- The user can add the link to  new photo here -->
+
             <input class="linker" placeholder="Post Link to New Pic!">
         </div>
         <br>
@@ -4121,27 +4129,58 @@ input {
         </div>
         <br>
         <div class="likes">
-             <h2 class="likes-header">Liked Photos:</h2>
+            <h2 class="likes-header">Liked Photos:</h2>
             <div class="liked-photo">
             </div>
         </div>
     
 <script>
 /*__POPCODESTART__*/
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 var mostPopularPhotos = ["https://static01.nyt.com/images/2021/05/17/dining/kc-korean-bulgogi-burger/kc-korean-bulgogi-burger-mobileMasterAt3x.jpg", "https://media.npr.org/assets/img/2021/08/11/gettyimages-1279899488_wide-f3860ceb0ef19643c335cb34df3fa1de166e2761-s1100-c50.jpg", "https://img.traveltriangle.com/blog/wp-content/uploads/2018/10/beaches-near-nyc-cover.jpg"];
 var likedPics = mostPopularPhotos[1];
 var photos = [];
+$(".liked-photo").append("<img src=" + likedPics + ">");
 $(".submit").click(function () {
   var link = $(".linker").val();
   var submit = $(".submit");
-  var span = mostPopularPhotos.length;
-  $(".posts").append("<img src=" + link + ">");
-  mostPopularPhotos.push(link);
-  $(".message").text(mostPopularPhotos.length);
-  $(".liked-photo").append("<img src=" + likedPics + ">");
+  var most = mostPopularPhotos;
+  $(".posts").empty();
+  photos.push(link);
 
-  if (mostPopularPhotos.length >= 6) {
-    $(".message").append("<p>" + "You are a loyal member!!!" + "</p>");
+  if (mostPopularPhotos.length >= 1) {
+    $(".message2").text("You are a loyal member!!!");
+  }
+
+  if (photos.length >= 3) {
+    $(".message2").text("You are a Silver Level member!!!");
+  }
+
+  if (photos.length >= 5) {
+    $(".message2").text("You are a Gold Level member!!!");
+  }
+
+  if (photos.length >= 6) {
+    $(".message2").text("You are a Platinum Level member!!!");
+  }
+
+  var _iterator = _createForOfIteratorHelper(photos),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var pics = _step.value;
+      $(".posts").append("<div>" + "<img src=" + link + ">" + "</div>");
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
   }
 });
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBvcGNvZGVQcmV2aWV3LmpzIl0sIm5hbWVzIjpbIm1vc3RQb3B1bGFyUGhvdG9zIiwibGlrZWRQaWNzIiwicGhvdG9zIiwiJCIsImNsaWNrIiwibGluayIsInZhbCIsInN1Ym1pdCIsInNwYW4iLCJsZW5ndGgiLCJhcHBlbmQiLCJwdXNoIiwidGV4dCJdLCJtYXBwaW5ncyI6IkFBQUEsSUFBSUEsaUJBQWlCLEdBQUMsQ0FBQywwSEFBRCxFQUE0SCxnSUFBNUgsRUFBNlAsMkZBQTdQLENBQXRCO0FBRUEsSUFBSUMsU0FBUyxHQUFHRCxpQkFBaUIsQ0FBQyxDQUFELENBQWpDO0FBRUEsSUFBSUUsTUFBTSxHQUFHLEVBQWI7QUFDQUMsQ0FBQyxDQUFDLFNBQUQsQ0FBRCxDQUFhQyxLQUFiLENBQW1CLFlBQVc7QUFDMUIsTUFBSUMsSUFBSSxHQUFHRixDQUFDLENBQUMsU0FBRCxDQUFELENBQWFHLEdBQWIsRUFBWDtBQUNBLE1BQUlDLE1BQU0sR0FBR0osQ0FBQyxDQUFDLFNBQUQsQ0FBZDtBQUNBLE1BQUlLLElBQUksR0FBR1IsaUJBQWlCLENBQUNTLE1BQTdCO0FBQ0FOLEVBQUFBLENBQUMsQ0FBQyxRQUFELENBQUQsQ0FBWU8sTUFBWixDQUFtQixjQUFjTCxJQUFkLEdBQXFCLEdBQXhDO0FBQ0FMLEVBQUFBLGlCQUFpQixDQUFDVyxJQUFsQixDQUF1Qk4sSUFBdkI7QUFDQUYsRUFBQUEsQ0FBQyxDQUFDLFVBQUQsQ0FBRCxDQUFjUyxJQUFkLENBQW1CWixpQkFBaUIsQ0FBQ1MsTUFBckM7QUFDQU4sRUFBQUEsQ0FBQyxDQUFDLGNBQUQsQ0FBRCxDQUFrQk8sTUFBbEIsQ0FBeUIsY0FBY1QsU0FBZCxHQUEwQixHQUFuRDs7QUFDQSxNQUFJRCxpQkFBaUIsQ0FBQ1MsTUFBbEIsSUFBNEIsQ0FBaEMsRUFBbUM7QUFDL0JOLElBQUFBLENBQUMsQ0FBQyxVQUFELENBQUQsQ0FBY08sTUFBZCxDQUFxQixRQUFRLDJCQUFSLEdBQXNDLE1BQTNEO0FBRUg7QUFDSixDQVpEIiwic291cmNlc0NvbnRlbnQiOlsibGV0IG1vc3RQb3B1bGFyUGhvdG9zPVtcImh0dHBzOi8vc3RhdGljMDEubnl0LmNvbS9pbWFnZXMvMjAyMS8wNS8xNy9kaW5pbmcva2Mta29yZWFuLWJ1bGdvZ2ktYnVyZ2VyL2tjLWtvcmVhbi1idWxnb2dpLWJ1cmdlci1tb2JpbGVNYXN0ZXJBdDN4LmpwZ1wiLFwiaHR0cHM6Ly9tZWRpYS5ucHIub3JnL2Fzc2V0cy9pbWcvMjAyMS8wOC8xMS9nZXR0eWltYWdlcy0xMjc5ODk5NDg4X3dpZGUtZjM4NjBjZWIwZWYxOTY0M2MzMzVjYjM0ZGYzZmExZGUxNjZlMjc2MS1zMTEwMC1jNTAuanBnXCIsXCJodHRwczovL2ltZy50cmF2ZWx0cmlhbmdsZS5jb20vYmxvZy93cC1jb250ZW50L3VwbG9hZHMvMjAxOC8xMC9iZWFjaGVzLW5lYXItbnljLWNvdmVyLmpwZ1wiXTtcblxubGV0IGxpa2VkUGljcyA9IG1vc3RQb3B1bGFyUGhvdG9zWzFdO1xuXG5sZXQgcGhvdG9zID0gW107XG4kKFwiLnN1Ym1pdFwiKS5jbGljayhmdW5jdGlvbigpIHtcbiAgICBsZXQgbGluayA9ICQoXCIubGlua2VyXCIpLnZhbCgpO1xuICAgIGxldCBzdWJtaXQgPSAkKFwiLnN1Ym1pdFwiKTtcbiAgICBsZXQgc3BhbiA9IG1vc3RQb3B1bGFyUGhvdG9zLmxlbmd0aDtcbiAgICAkKFwiLnBvc3RzXCIpLmFwcGVuZChcIjxpbWcgc3JjPVwiICsgbGluayArIFwiPlwiKTtcbiAgICBtb3N0UG9wdWxhclBob3Rvcy5wdXNoKGxpbmspO1xuICAgICQoXCIubWVzc2FnZVwiKS50ZXh0KG1vc3RQb3B1bGFyUGhvdG9zLmxlbmd0aCk7XG4gICAgJChcIi5saWtlZC1waG90b1wiKS5hcHBlbmQoXCI8aW1nIHNyYz1cIiArIGxpa2VkUGljcyArIFwiPlwiKTtcbiAgICBpZiAobW9zdFBvcHVsYXJQaG90b3MubGVuZ3RoID49IDYpIHtcbiAgICAgICAgJChcIi5tZXNzYWdlXCIpLmFwcGVuZChcIjxwPlwiICsgXCJZb3UgYXJlIGEgbG95YWwgbWVtYmVyISEhXCIgKyBcIjwvcD5cIik7XG4gICAgICAgIFxuICAgIH1cbn0pO1xuXG5cblxuXG5cblxuXG5cblxuXG5cblxuXG5cblxuXG5cblxuXG5cblxuIl19</script></body></html>
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBvcGNvZGVQcmV2aWV3LmpzIl0sIm5hbWVzIjpbIm1vc3RQb3B1bGFyUGhvdG9zIiwibGlrZWRQaWNzIiwicGhvdG9zIiwiJCIsImFwcGVuZCIsImNsaWNrIiwibGluayIsInZhbCIsInN1Ym1pdCIsIm1vc3QiLCJlbXB0eSIsInB1c2giLCJsZW5ndGgiLCJ0ZXh0IiwicGljcyJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUEsSUFBSUEsaUJBQWlCLEdBQUcsQ0FBQywwSEFBRCxFQUE2SCxnSUFBN0gsRUFBK1AsMkZBQS9QLENBQXhCO0FBRUEsSUFBSUMsU0FBUyxHQUFHRCxpQkFBaUIsQ0FBQyxDQUFELENBQWpDO0FBRUEsSUFBSUUsTUFBTSxHQUFHLEVBQWI7QUFFQUMsQ0FBQyxDQUFDLGNBQUQsQ0FBRCxDQUFrQkMsTUFBbEIsQ0FBeUIsY0FBY0gsU0FBZCxHQUEwQixHQUFuRDtBQUVBRSxDQUFDLENBQUMsU0FBRCxDQUFELENBQWFFLEtBQWIsQ0FBbUIsWUFBVztBQUMxQixNQUFJQyxJQUFJLEdBQUdILENBQUMsQ0FBQyxTQUFELENBQUQsQ0FBYUksR0FBYixFQUFYO0FBQ0EsTUFBSUMsTUFBTSxHQUFHTCxDQUFDLENBQUMsU0FBRCxDQUFkO0FBQ0EsTUFBSU0sSUFBSSxHQUFHVCxpQkFBWDtBQUNBRyxFQUFBQSxDQUFDLENBQUMsUUFBRCxDQUFELENBQVlPLEtBQVo7QUFDQVIsRUFBQUEsTUFBTSxDQUFDUyxJQUFQLENBQVlMLElBQVo7O0FBQ0EsTUFBSU4saUJBQWlCLENBQUNZLE1BQWxCLElBQTRCLENBQWhDLEVBQW1DO0FBQy9CVCxJQUFBQSxDQUFDLENBQUMsV0FBRCxDQUFELENBQWVVLElBQWYsQ0FBb0IsMkJBQXBCO0FBQ0g7O0FBQ0QsTUFBSVgsTUFBTSxDQUFDVSxNQUFQLElBQWlCLENBQXJCLEVBQXdCO0FBQ3BCVCxJQUFBQSxDQUFDLENBQUMsV0FBRCxDQUFELENBQWVVLElBQWYsQ0FBb0Isa0NBQXBCO0FBQ0g7O0FBRUQsTUFBSVgsTUFBTSxDQUFDVSxNQUFQLElBQWlCLENBQXJCLEVBQXdCO0FBQ3BCVCxJQUFBQSxDQUFDLENBQUMsV0FBRCxDQUFELENBQWVVLElBQWYsQ0FBb0IsZ0NBQXBCO0FBQ0g7O0FBRUQsTUFBSVgsTUFBTSxDQUFDVSxNQUFQLElBQWlCLENBQXJCLEVBQXdCO0FBQ3BCVCxJQUFBQSxDQUFDLENBQUMsV0FBRCxDQUFELENBQWVVLElBQWYsQ0FBb0Isb0NBQXBCO0FBQ0g7O0FBbkJ5Qiw2Q0FzQlRYLE1BdEJTO0FBQUE7O0FBQUE7QUFzQjFCLHdEQUF5QjtBQUFBLFVBQWhCWSxJQUFnQjtBQUNyQlgsTUFBQUEsQ0FBQyxDQUFDLFFBQUQsQ0FBRCxDQUFZQyxNQUFaLENBQW1CLFVBQVUsV0FBVixHQUF3QkUsSUFBeEIsR0FBK0IsR0FBL0IsR0FBcUMsUUFBeEQ7QUFDSDtBQXhCeUI7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQXlCN0IsQ0F6QkQiLCJzb3VyY2VzQ29udGVudCI6WyJsZXQgbW9zdFBvcHVsYXJQaG90b3MgPSBbXCJodHRwczovL3N0YXRpYzAxLm55dC5jb20vaW1hZ2VzLzIwMjEvMDUvMTcvZGluaW5nL2tjLWtvcmVhbi1idWxnb2dpLWJ1cmdlci9rYy1rb3JlYW4tYnVsZ29naS1idXJnZXItbW9iaWxlTWFzdGVyQXQzeC5qcGdcIiwgXCJodHRwczovL21lZGlhLm5wci5vcmcvYXNzZXRzL2ltZy8yMDIxLzA4LzExL2dldHR5aW1hZ2VzLTEyNzk4OTk0ODhfd2lkZS1mMzg2MGNlYjBlZjE5NjQzYzMzNWNiMzRkZjNmYTFkZTE2NmUyNzYxLXMxMTAwLWM1MC5qcGdcIiwgXCJodHRwczovL2ltZy50cmF2ZWx0cmlhbmdsZS5jb20vYmxvZy93cC1jb250ZW50L3VwbG9hZHMvMjAxOC8xMC9iZWFjaGVzLW5lYXItbnljLWNvdmVyLmpwZ1wiXTtcblxubGV0IGxpa2VkUGljcyA9IG1vc3RQb3B1bGFyUGhvdG9zWzFdO1xuXG5sZXQgcGhvdG9zID0gW107XG5cbiQoXCIubGlrZWQtcGhvdG9cIikuYXBwZW5kKFwiPGltZyBzcmM9XCIgKyBsaWtlZFBpY3MgKyBcIj5cIik7XG5cbiQoXCIuc3VibWl0XCIpLmNsaWNrKGZ1bmN0aW9uKCkge1xuICAgIGxldCBsaW5rID0gJChcIi5saW5rZXJcIikudmFsKCk7XG4gICAgbGV0IHN1Ym1pdCA9ICQoXCIuc3VibWl0XCIpO1xuICAgIGxldCBtb3N0ID0gbW9zdFBvcHVsYXJQaG90b3M7XG4gICAgJChcIi5wb3N0c1wiKS5lbXB0eSgpO1xuICAgIHBob3Rvcy5wdXNoKGxpbmspO1xuICAgIGlmIChtb3N0UG9wdWxhclBob3Rvcy5sZW5ndGggPj0gMSkge1xuICAgICAgICAkKFwiLm1lc3NhZ2UyXCIpLnRleHQoXCJZb3UgYXJlIGEgbG95YWwgbWVtYmVyISEhXCIpO1xuICAgIH1cbiAgICBpZiAocGhvdG9zLmxlbmd0aCA+PSAzKSB7XG4gICAgICAgICQoXCIubWVzc2FnZTJcIikudGV4dChcIllvdSBhcmUgYSBTaWx2ZXIgTGV2ZWwgbWVtYmVyISEhXCIpO1xuICAgIH1cblxuICAgIGlmIChwaG90b3MubGVuZ3RoID49IDUpIHtcbiAgICAgICAgJChcIi5tZXNzYWdlMlwiKS50ZXh0KFwiWW91IGFyZSBhIEdvbGQgTGV2ZWwgbWVtYmVyISEhXCIpO1xuICAgIH1cblxuICAgIGlmIChwaG90b3MubGVuZ3RoID49IDYpIHtcbiAgICAgICAgJChcIi5tZXNzYWdlMlwiKS50ZXh0KFwiWW91IGFyZSBhIFBsYXRpbnVtIExldmVsIG1lbWJlciEhIVwiKTtcbiAgICB9XG4gICAgXG4gICBcbiAgICBmb3IgKGxldCBwaWNzIG9mIHBob3Rvcykge1xuICAgICAgICAkKFwiLnBvc3RzXCIpLmFwcGVuZChcIjxkaXY+XCIgKyBcIjxpbWcgc3JjPVwiICsgbGluayArIFwiPlwiICsgXCI8L2Rpdj5cIik7XG4gICAgfVxufSk7Il19</script></body></html>
